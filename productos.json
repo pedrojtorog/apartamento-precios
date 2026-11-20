@@ -1,0 +1,30 @@
+[
+  {
+    "id": "lg_gs66spm",
+    "nombre": "LG Nevecón GS66SPM Side by Side 638L",
+    "url": "https://www.lg.com/co/neveras/nevecones-side-by-side/gs66spm/buy",
+    "fuente": "LG oficial",
+    "selector_hint": "price"
+  },
+  {
+    "id": "lg_gs66sxtc",
+    "nombre": "LG Nevecón GS66SXTC InstaView Side by Side 635L",
+    "url": "https://www.lg.com/co/neveras/nevecones-side-by-side/gs66sxtc/buy",
+    "fuente": "LG oficial",
+    "selector_hint": "price"
+  },
+  {
+    "id": "samsung_rs22t5200b1",
+    "nombre": "Samsung RS22T5200B1/CO Side by Side 628L",
+    "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300t-large-capacity-602l-ebony-black-rs22t5200b1-co/",
+    "fuente": "Samsung oficial",
+    "selector_hint": "price"
+  },
+  {
+    "id": "samsung_rs23cb760a12co",
+    "nombre": "Samsung Bespoke RS23CB760A12CO Side by Side 640L",
+    "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300cc-640l-clean-white-rs23cb70na12co/",
+    "fuente": "Samsung oficial",
+    "selector_hint": "price"
+  }
+]
