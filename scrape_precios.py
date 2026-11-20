@@ -33,13 +33,30 @@ PATRON_PRECIO = re.compile(r"\$\s?[\d\.]{7,}")
 
 
 def extraer_precio_de_texto(texto: str) -> list[str]:
-    """Devuelve todos los precios candidatos encontrados en el texto, sin duplicar."""
-    candidatos = PATRON_PRECIO.findall(texto)
+    """Devuelve todos los precios candidatos encontrados en el texto, sin duplicar.
+
+    Excluye montos que aparecen justo después de palabras como "Ahorra" o
+    "Ahorro" (son el descuento en pesos, no el precio del producto), y
+    montos precedidos por "Desde $" seguido de "cuotas" cerca (son cuotas de
+    financiamiento, no el precio de contado).
+    """
+    candidatos = []
+    for match in PATRON_PRECIO.finditer(texto):
+        inicio = match.start()
+        contexto_previo = texto[max(0, inicio - 15):inicio].lower()
+        contexto_posterior = texto[match.end():match.end() + 15].lower()
+
+        if "ahorr" in contexto_previo:
+            continue
+        if "cuota" in contexto_posterior or "cuota" in contexto_previo:
+            continue
+
+        candidatos.append(match.group().strip())
+
     vistos = []
     for c in candidatos:
-        c_limpio = c.strip()
-        if c_limpio not in vistos:
-            vistos.append(c_limpio)
+        if c not in vistos:
+            vistos.append(c)
     return vistos
 
 
@@ -113,9 +130,11 @@ def revisar_producto(page, producto: dict) -> dict:
             # (descarta cuotas chiquitas, ahorros en pesos, etc.)
             precios_plausibles = [n for n in precios_num if 1_000_000 <= n <= 30_000_000]
             if precios_plausibles:
-                # El precio de contado con descuento suele ser el más bajo
-                # DENTRO del rango plausible (evita elegir el precio "antes de descuento")
+                # Con "Ahorra"/cuotas ya excluidos, lo que queda suele ser
+                # [precio_actual, precio_antes_descuento, ...]. El precio
+                # actual (de contado) es el más bajo de los que quedan.
                 resultado["precio_principal"] = min(precios_plausibles)
+                resultado["todos_los_candidatos_plausibles"] = sorted(precios_plausibles)
             resultado["estado"] = "ok" if precios_plausibles else "precio_no_confiable"
         else:
             resultado["estado"] = "sin_precio_visible"
