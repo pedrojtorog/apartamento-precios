@@ -46,9 +46,17 @@ python scrape_precios.py
   red que no se puede resolver ajustando el script. Para ver el precio de LG
   hay que seguir revisándolo manualmente (abrir la página en un navegador
   normal) o desde un retailer (Falabella, Alkosto, Ktronix, Homecenter).
+- **El Bespoke RS23CB760A12CO/RS23CB70NA12CO tampoco está incluido.**
+  Se confirmó que samsung.com/co ya no lo tiene en su catálogo de la
+  categoría Side by Side — cualquier URL que se intente para ese modelo
+  redirige al home. Sigue disponible en retailers (Falabella, Homecenter),
+  solo no en la tienda directa de Samsung.
 - Si Samsung cambia el diseño de su página, el script puede dejar de
   encontrar el precio (`estado: sin_precio_visible` o `precio_no_confiable`).
   En ese caso, revisar el screenshot correspondiente en `screenshots/`.
+- Si una URL de producto deja de existir y Samsung redirige a otra página
+  (p.ej. al home), el estado queda como `ok_pero_redirigido_revisar` —
+  revisar manualmente antes de confiar en ese precio.
 - El precio detectado es el más bajo dentro de un rango plausible
   (1.000.000–30.000.000 COP) encontrado cerca del bloque de compra — pensado
   para electrodomésticos grandes. Para otro tipo de producto, ajustar ese
