@@ -39,9 +39,17 @@ python scrape_precios.py
 
 ## Limitaciones conocidas
 
-- Si LG o Samsung cambian el diseño de su página, el script puede dejar de
-  encontrar el precio (`estado: sin_precio_visible`). En ese caso, revisar el
-  screenshot correspondiente en `screenshots/` para ver qué está pasando.
-- El precio detectado es el número más bajo encontrado en la página — en la
-  mayoría de los casos corresponde al precio con descuento vigente, pero vale
-  la pena confirmar visualmente con el screenshot si hay dudas.
+- **LG Colombia no está incluido.** Se probó y su sitio (lg.com/co) bloquea
+  las solicitudes del servidor de GitHub Actions con un firewall anti-bot
+  (Akamai) — devuelve "Access Denied" antes de siquiera cargar la página.
+  No es un problema de JavaScript ni de selectores: es un bloqueo a nivel de
+  red que no se puede resolver ajustando el script. Para ver el precio de LG
+  hay que seguir revisándolo manualmente (abrir la página en un navegador
+  normal) o desde un retailer (Falabella, Alkosto, Ktronix, Homecenter).
+- Si Samsung cambia el diseño de su página, el script puede dejar de
+  encontrar el precio (`estado: sin_precio_visible` o `precio_no_confiable`).
+  En ese caso, revisar el screenshot correspondiente en `screenshots/`.
+- El precio detectado es el más bajo dentro de un rango plausible
+  (1.000.000–30.000.000 COP) encontrado cerca del bloque de compra — pensado
+  para electrodomésticos grandes. Para otro tipo de producto, ajustar ese
+  rango en `scrape_precios.py`.

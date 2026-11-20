@@ -74,21 +74,49 @@ def revisar_producto(page, producto: dict) -> dict:
         # WebFetch no puede hacer: esperar y ejecutar scripts de la página)
         page.wait_for_timeout(6000)
 
-        # Intento 1: buscar en el texto visible de toda la página
-        texto_pagina = page.inner_text("body")
-        precios = extraer_precio_de_texto(texto_pagina)
+        # Intento 1: acotar la búsqueda a la zona de compra (donde está el
+        # precio del producto principal), para no mezclar precios de
+        # productos relacionados, cuotas de financiamiento o kombos.
+        # Samsung normalmente pone el precio dentro de un contenedor cerca
+        # del botón "Comprar ahora" / "Añadir al carrito".
+        zona_precio = None
+        for selector in [
+            "[class*='price']",
+            "[class*='Price']",
+            "[data-testid*='price']",
+            "main",
+        ]:
+            try:
+                loc = page.locator(selector).first
+                if loc.count() > 0 and loc.is_visible(timeout=1000):
+                    zona_precio = loc.inner_text(timeout=2000)
+                    if PATRON_PRECIO.search(zona_precio):
+                        break
+            except Exception:
+                continue
+
+        texto_relevante = zona_precio if zona_precio else page.inner_text("body")
+        precios = extraer_precio_de_texto(texto_relevante)
+
+        # Si la zona acotada no trajo nada, caer de vuelta al texto completo
+        if not precios:
+            precios = extraer_precio_de_texto(page.inner_text("body"))
 
         resultado["precios_encontrados"] = precios
         if precios:
-            # El precio más bajo suele ser el precio con descuento vigente
             precios_num = []
             for p in precios:
                 limpio = re.sub(r"[^\d]", "", p)
                 if limpio:
                     precios_num.append(int(limpio))
-            if precios_num:
-                resultado["precio_principal"] = min(precios_num)
-            resultado["estado"] = "ok"
+            # Filtra valores irreales para un electrodoméstico de esta gama
+            # (descarta cuotas chiquitas, ahorros en pesos, etc.)
+            precios_plausibles = [n for n in precios_num if 1_000_000 <= n <= 30_000_000]
+            if precios_plausibles:
+                # El precio de contado con descuento suele ser el más bajo
+                # DENTRO del rango plausible (evita elegir el precio "antes de descuento")
+                resultado["precio_principal"] = min(precios_plausibles)
+            resultado["estado"] = "ok" if precios_plausibles else "precio_no_confiable"
         else:
             resultado["estado"] = "sin_precio_visible"
 
