@@ -75,7 +75,15 @@ def revisar_producto(page, producto: dict) -> dict:
     }
 
     try:
-        page.goto(url, wait_until="domcontentloaded", timeout=45000)
+        response = page.goto(url, wait_until="domcontentloaded", timeout=45000)
+
+        # Si la URL del producto redirigió a otra página (ej. al home),
+        # el precio que se encuentre no será confiable. Lo señalamos.
+        url_final = page.url
+        if response and response.status >= 400:
+            resultado["estado"] = f"http_{response.status}"
+            resultado["error"] = f"Respuesta HTTP {response.status}"
+            return resultado
 
         # Cerrar banner de cookies si aparece (común en ambos sitios)
         for texto_boton in ["Accept all", "Aceptar todo", "Aceptar", "ACEPTAR"]:
@@ -138,6 +146,14 @@ def revisar_producto(page, producto: dict) -> dict:
             resultado["estado"] = "ok" if precios_plausibles else "precio_no_confiable"
         else:
             resultado["estado"] = "sin_precio_visible"
+
+        # Verificación básica: si la URL cambió a algo que ya no contiene
+        # el id/modelo esperado, lo marcamos para revisión manual aunque
+        # haya encontrado un precio (puede ser de otra página, ej. el home).
+        if url_final.rstrip("/") != url.rstrip("/"):
+            resultado["redirigido_a"] = url_final
+            if resultado["estado"] == "ok":
+                resultado["estado"] = "ok_pero_redirigido_revisar"
 
     except PlaywrightTimeoutError as e:
         resultado["estado"] = "timeout"
