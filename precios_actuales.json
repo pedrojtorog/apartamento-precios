@@ -1,0 +1,74 @@
+[
+  {
+    "id": "lg_gs66spm",
+    "nombre": "LG Nevecón GS66SPM Side by Side 638L",
+    "url": "https://www.lg.com/co/neveras/nevecones-side-by-side/gs66spm/buy",
+    "fuente": "LG oficial",
+    "timestamp_utc": "2026-11-20T21:47:39.843013+00:00",
+    "precios_encontrados": [],
+    "precio_principal": null,
+    "estado": "sin_precio_visible",
+    "error": null
+  },
+  {
+    "id": "lg_gs66sxtc",
+    "nombre": "LG Nevecón GS66SXTC InstaView Side by Side 635L",
+    "url": "https://www.lg.com/co/neveras/nevecones-side-by-side/gs66sxtc/buy",
+    "fuente": "LG oficial",
+    "timestamp_utc": "2026-11-20T21:47:46.270732+00:00",
+    "precios_encontrados": [],
+    "precio_principal": null,
+    "estado": "sin_precio_visible",
+    "error": null
+  },
+  {
+    "id": "samsung_rs22t5200b1",
+    "nombre": "Samsung RS22T5200B1/CO Side by Side 628L",
+    "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300t-large-capacity-602l-ebony-black-rs22t5200b1-co/",
+    "fuente": "Samsung oficial",
+    "timestamp_utc": "2026-11-20T21:47:52.417277+00:00",
+    "precios_encontrados": [
+      "$ 449.992",
+      "$ 5.399.900",
+      "$ 8.299.900",
+      "$ 2.900.000",
+      "$ 396.274"
+    ],
+    "precio_principal": 396274,
+    "estado": "ok",
+    "error": null
+  },
+  {
+    "id": "samsung_rs23cb760a12co",
+    "nombre": "Samsung Bespoke RS23CB760A12CO Side by Side 640L",
+    "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300cc-640l-clean-white-rs23cb70na12co/",
+    "fuente": "Samsung oficial",
+    "timestamp_utc": "2026-11-20T21:48:12.421954+00:00",
+    "precios_encontrados": [
+      "$ 2.099.900",
+      "$ 150.000",
+      "$ 2.249.900",
+      "$ 399.900",
+      "$ 200.000",
+      "$ 599.900",
+      "$ 1.999.900",
+      "$ 900.000",
+      "$ 2.899.900",
+      "$ 1.649.900",
+      "$ 1.550.000",
+      "$ 3.199.900",
+      "$ 800.000",
+      "$ 3.699.900",
+      "$ 379.900",
+      "$ 519.900",
+      "$ 1.299.900",
+      "$ 4.999.900",
+      "$ 2.600.000",
+      "$ 7.599.900",
+      "$ 7.724.900"
+    ],
+    "precio_principal": 150000,
+    "estado": "ok",
+    "error": null
+  }
+]
