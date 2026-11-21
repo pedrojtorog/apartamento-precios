@@ -4,7 +4,7 @@
     "nombre": "Samsung RS22T5200B1/CO Side by Side 628L",
     "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300t-large-capacity-602l-ebony-black-rs22t5200b1-co/",
     "fuente": "Samsung oficial",
-    "timestamp_utc": "2026-11-20T21:54:56.376723+00:00",
+    "timestamp_utc": "2026-11-21T19:56:54.867409+00:00",
     "precios_encontrados": [
       "$ 5.399.900",
       "$ 8.299.900"
@@ -16,24 +16,5 @@
       5399900,
       8299900
     ]
-  },
-  {
-    "id": "samsung_rs23cb760a12co",
-    "nombre": "Samsung Bespoke RS23CB760A12CO Side by Side 640L",
-    "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300cc-640l-clean-white-rs23cb70na12co",
-    "fuente": "Samsung oficial",
-    "timestamp_utc": "2026-11-20T21:55:14.776231+00:00",
-    "precios_encontrados": [
-      "$ 2.099.900",
-      "$ 2.249.900"
-    ],
-    "precio_principal": 2099900,
-    "estado": "ok_pero_redirigido_revisar",
-    "error": null,
-    "todos_los_candidatos_plausibles": [
-      2099900,
-      2249900
-    ],
-    "redirigido_a": "https://www.samsung.com/co/"
   }
 ]
