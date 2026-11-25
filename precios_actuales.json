@@ -4,16 +4,16 @@
     "nombre": "Samsung RS22T5200B1/CO Side by Side 628L",
     "url": "https://www.samsung.com/co/refrigerators/side-by-side/rs5300t-large-capacity-602l-ebony-black-rs22t5200b1-co/",
     "fuente": "Samsung oficial",
-    "timestamp_utc": "2026-11-24T22:55:40.412050+00:00",
+    "timestamp_utc": "2026-11-25T22:09:46.862314+00:00",
     "precios_encontrados": [
-      "$ 5.399.900",
+      "$ 5.299.900",
       "$ 8.299.900"
     ],
-    "precio_principal": 5399900,
+    "precio_principal": 5299900,
     "estado": "ok",
     "error": null,
     "todos_los_candidatos_plausibles": [
-      5399900,
+      5299900,
       8299900
     ]
   }
